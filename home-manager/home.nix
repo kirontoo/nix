@@ -3,6 +3,7 @@
 {
   imports = [
     ./apps/git.nix
+    ./apps/neovim.nix
   ];
   nixpkgs = {
     config = {
@@ -16,6 +17,10 @@
   targets.genericLinux.enable = true;
   xdg.mime.enable = true;
   xdg.systemDirs.data = [ "${config.home.homeDirectory}/.nix-profile/share/applications" ];
+  
+  xdg.configFile."nvim/" = {
+    source = (pkgs.callPackage ./nvpunk/default.nix{}).nvpunk;
+  };
    
   home.activation = {
     linkDesktopApplications = {
@@ -31,7 +36,6 @@
   home.packages = with pkgs; [
     neofetch
     obsidian
-    neovim
     vim
     discord
     spotify
