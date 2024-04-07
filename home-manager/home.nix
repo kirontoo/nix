@@ -4,6 +4,7 @@
   imports = [
     ./apps/git.nix
     ./apps/neovim.nix
+    ./starship/default.nix
   ];
   nixpkgs = {
     config = {
@@ -41,7 +42,6 @@
     spotify
     thunderbird
     
-    starship
     nerdfonts
     libgcc
     
