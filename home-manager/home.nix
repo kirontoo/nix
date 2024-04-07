@@ -39,12 +39,33 @@
     vim
     discord
     spotify
+    thunderbird
+    
+    starship
+    nerdfonts
+    libgcc
+    
+    # system utilities
+    htop
     gotop
+    
+    # useful shell utils
+    fd
+    jq
+    wget
+    less
+    tree
+    
+    # dev tools
     go
     python3
-    nodejs_21
-    thunderbird
-    nerdfonts
+    
+    # Javascript Development Tools
+    typescript
+    nodejs
+    nodePackages.npm
   ];
   programs.home-manager.enable = true;
+  
+  fonts.fontconfig.enable = true;
 }
