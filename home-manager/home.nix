@@ -5,6 +5,7 @@
     ./apps/git.nix
     ./apps/neovim.nix
     ./starship/default.nix
+    ./zsh/zsh.nix
   ];
   nixpkgs = {
     config = {
@@ -18,11 +19,18 @@
   targets.genericLinux.enable = true;
   xdg.mime.enable = true;
   xdg.systemDirs.data = [ "${config.home.homeDirectory}/.nix-profile/share/applications" ];
-  
+
+  # install nvpunk config files
+  # https://nvpunk.gabmus.org/
   xdg.configFile."nvim/" = {
     source = (pkgs.callPackage ./nvpunk/default.nix{}).nvpunk;
   };
-   
+
+  # Move user config to ~/.config/nvpunk
+  xdg.configFile."nvpunk/" = {
+    source = ./nvpunk/nvpunk;
+  };
+
   home.activation = {
     linkDesktopApplications = {
       after = [ "writeBoundary" "createXdgUserDirectories" ];
@@ -41,31 +49,35 @@
     discord
     spotify
     thunderbird
-    
+
     nerdfonts
     libgcc
-    
+
     # system utilities
     htop
     gotop
-    
+
     # useful shell utils
     fd
     jq
     wget
     less
     tree
-    
+
     # dev tools
     go
     python3
-    
+
     # Javascript Development Tools
     typescript
     nodejs
     nodePackages.npm
   ];
+
+  home.file.".zshrc".source = ./zsh/zshrc;
+
+
   programs.home-manager.enable = true;
-  
+
   fonts.fontconfig.enable = true;
 }

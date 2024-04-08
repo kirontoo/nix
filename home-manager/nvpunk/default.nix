@@ -19,10 +19,5 @@
       cp -aR $src/* $out/
     '';
   };
-
-  # Move user config to ~/.config/nvpunk
-  xdg.configFile."nvpunk/" = {
-    source = ./nvpunk;
-  };
 }
 
