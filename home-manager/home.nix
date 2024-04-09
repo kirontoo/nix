@@ -100,20 +100,4 @@
   programs.home-manager.enable = true;
 
   fonts.fontconfig.enable = true;
-  # fonts.packages = with pkgs; [
-  #   nerdfonts
-  #  (nerdfonts.override { fonts = [ 
-  #    "FireCode" 
-  #    "SpaceMono" 
-  #    "3270" 
-  #    "CaskaydiaCove" 
-  #    "FantasqueSansM" 
-  #    "ShureTechMono" 
-  #    "SauceCodePro"
-  #    "Symbols"
-  #    "Terminess"
-  #    "UbuntuMono"
-  #    "VictorMono"
-  #  ]; })
-  # ];
 }
