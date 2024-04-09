@@ -3,6 +3,7 @@
 {
   imports = [
     ./apps/git.nix
+    ./apps/alacritty.nix
     ./apps/neovim.nix
     ./starship/default.nix
     ./zsh/zsh.nix
@@ -24,11 +25,13 @@
   # https://nvpunk.gabmus.org/
   xdg.configFile."nvim/" = {
     source = (pkgs.callPackage ./nvpunk/default.nix{}).nvpunk;
+    recursive = true;
   };
 
   # Move user config to ~/.config/nvpunk
   xdg.configFile."nvpunk/" = {
     source = ./nvpunk/nvpunk;
+    recursive = true;
   };
 
   home.activation = {
@@ -49,8 +52,26 @@
     discord
     spotify
     thunderbird
+    ripgrep
+
+    ## cli apps
+    tomato-c
 
     nerdfonts
+   (nerdfonts.override { fonts = [ 
+     "FiraCode" 
+     "SpaceMono" 
+     "3270" 
+     "CascadiaCode" 
+     "FantasqueSansMono" 
+     "ShareTechMono" 
+     "SourceCodePro"
+     "NerdFontsSymbolsOnly"
+     "Terminus"
+     "UbuntuMono"
+     "VictorMono"
+   ]; })
+
     libgcc
 
     # system utilities
@@ -76,8 +97,23 @@
 
   home.file.".zshrc".source = ./zsh/zshrc;
 
-
   programs.home-manager.enable = true;
 
   fonts.fontconfig.enable = true;
+  # fonts.packages = with pkgs; [
+  #   nerdfonts
+  #  (nerdfonts.override { fonts = [ 
+  #    "FireCode" 
+  #    "SpaceMono" 
+  #    "3270" 
+  #    "CaskaydiaCove" 
+  #    "FantasqueSansM" 
+  #    "ShureTechMono" 
+  #    "SauceCodePro"
+  #    "Symbols"
+  #    "Terminess"
+  #    "UbuntuMono"
+  #    "VictorMono"
+  #  ]; })
+  # ];
 }
