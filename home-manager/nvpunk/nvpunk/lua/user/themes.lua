@@ -1,4 +1,4 @@
 return {
     'embark',
-		'gruvbox'
+    'gruvbox'
 }
