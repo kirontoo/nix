@@ -12,6 +12,12 @@
     config = {
       allowUnfree = true;
       allowUnfreePredicate = (_: true);
+      users.users."daedalus" = {
+        description = "main user";
+        shell = pkgs.zsh;
+      };
+      users.defaultUserShell = pkgs.zsh;
+      environment.shells = with pkgs; [ zsh ];
     };
   };
 
@@ -31,6 +37,12 @@
   # Move user config to ~/.config/nvpunk
   xdg.configFile."nvpunk/" = {
     source = ./nvpunk/nvpunk;
+    recursive = true;
+  };
+
+  # Install kitty config
+  xdg.configFile."kitty/" = {
+    source = ./apps/kitty/config;
     recursive = true;
   };
 

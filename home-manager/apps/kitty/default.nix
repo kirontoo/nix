@@ -1,7 +1,7 @@
 {
   programs.kitty = {
     enable = true;
-    font.name = "Dm Mono";
+    font.name = "Shure Tech Mono";
     font.size = 16.0;
     settings = {
       scrollback_lines = 10000;
