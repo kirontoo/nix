@@ -7,6 +7,7 @@
     ./apps/neovim.nix
     ./starship/default.nix
     ./zsh/zsh.nix
+    ./fzf/default.nix
   ];
   nixpkgs = {
     config = {
@@ -54,6 +55,10 @@
     };
   };
 
+  home.sessionVariables = {
+    TERM = "kitty";
+  };
+
   home.username = "daedalus";
   home.homeDirectory = "/home/daedalus";
   home.stateVersion = "23.05";
@@ -65,6 +70,7 @@
     spotify
     thunderbird
     ripgrep
+    vivaldi
 
     ## cli apps
     tomato-c
