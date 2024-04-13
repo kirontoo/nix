@@ -9,7 +9,7 @@ export PATH=$HOME/.node_modules/bin:$HOME/go/bin:$HOME/scripts:$HOME/bin:/usr/lo
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="darkblood"
- ZSH_THEME="spaceship"
+ # ZSH_THEME="spaceship"
 
 # https://github.com/jackharrisonsherlock/common
  # ZSH_THEME="common"
@@ -37,9 +37,9 @@ SPACESHIP_CHAR_SYMBOL=❯
                        
 alias dev="cd ~/Documents/dev"
 alias repos="cd ~/Documents/repos/github.com/kirontoo"
-alias dotfiles="cd ~/Documents/dev/dotfiles"
+alias dotfiles="cd ~/Documents/repos/dotfiles"
 alias mindmap="cd ~/Documents/mindmap"
-alias blog="cd ~/Documents/personal-blog"
+alias blog="cd ~/Documents/repos/github.com/kirontoo/personal-blog"
 alias config="cd ~/.config/"
 alias ide="~/scripts/tmux-dew.sh"
 
