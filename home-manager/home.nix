@@ -3,7 +3,6 @@
 {
   imports = [
     ./apps/git.nix
-    ./apps/alacritty.nix
     ./apps/neovim.nix
     ./starship/default.nix
     ./zsh/zsh.nix
@@ -106,6 +105,7 @@
     # dev tools
     go
     python3
+    dbeaver
 
     # Javascript Development Tools
     typescript
