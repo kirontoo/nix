@@ -7,6 +7,7 @@
     ./starship/default.nix
     ./zsh/zsh.nix
     ./fzf/default.nix
+    ./apps/tmux/default.nix
   ];
   nixpkgs = {
     config = {
