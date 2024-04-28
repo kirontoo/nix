@@ -70,24 +70,27 @@
     thunderbird
     ripgrep
     vivaldi
+    vscode
 
     ## cli apps
     tomato-c
 
     nerdfonts
-   (nerdfonts.override { fonts = [ 
-     "FiraCode" 
-     "SpaceMono" 
-     "3270" 
-     "CascadiaCode" 
-     "FantasqueSansMono" 
-     "ShareTechMono" 
-     "SourceCodePro"
-     "NerdFontsSymbolsOnly"
-     "Terminus"
-     "UbuntuMono"
-     "VictorMono"
-   ]; })
+    (nerdfonts.override { fonts = [ 
+      "FiraCode" 
+      "SpaceMono" 
+      "3270" 
+      "CascadiaCode" 
+      "FantasqueSansMono" 
+      "ShareTechMono" 
+      "SourceCodePro"
+      "NerdFontsSymbolsOnly"
+      "Terminus"
+      "UbuntuMono"
+      "VictorMono"
+    ]; })
+     font-awesome_5
+     font-awesome
 
     libgcc
 
@@ -114,7 +117,6 @@
   ];
 
   home.file.".zshrc".source = ./zsh/zshrc;
-
   programs.home-manager.enable = true;
 
   fonts.fontconfig.enable = true;
