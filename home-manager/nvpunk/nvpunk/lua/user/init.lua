@@ -1,7 +1,6 @@
 -- SET LEADER KEYMAP --
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
-vim.cmd('colorscheme embark')
 
 -- vim.o.sessionoptions =
 -- 	'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal'
@@ -11,6 +10,7 @@ vim.opt.clipboard:append('unnamedplus')
 vim.opt.wrap = false
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
+vim.g.concaellevel = 1
 
 -- vim.opt.list=true
 -- vim.opt.listchars='tab:ﲒ,extends:›,precedes:‹,nbsp:␣,trail:·,eol:↲'

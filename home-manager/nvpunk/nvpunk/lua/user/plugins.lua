@@ -12,28 +12,19 @@ return {
 	},
 	{ 'godlygeek/tabular' },
 	{
-		'iamcco/markdown-preview.nvim',
-		run = function()
-			vim.fn['mkdp#util#install']()
-		end,
+		"iamcco/markdown-preview.nvim",
+
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		ft = { "markdown" },
+		build = function() vim.fn["mkdp#util#install"]() end,
 	},
 	{
 		"epwalsh/obsidian.nvim",
 		version = "*", -- recommended, use latest release instead of latest commit
 		lazy = true,
 		ft = "markdown",
-		-- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-		-- event = {
-		--   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-		--   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
-		--   "BufReadPre path/to/my-vault/**.md",
-		--   "BufNewFile path/to/my-vault/**.md",
-		-- },
 		dependencies = {
-			-- Required.
 			"nvim-lua/plenary.nvim",
-
-			-- see below for full list of optional dependencies 👇
 		},
 		opts = {
 			workspaces = {
@@ -49,23 +40,92 @@ return {
 				subdir = "templates",
 				date_format = "%Y-%m-%d",
 				time_format = "%H:%M",
-				-- A map for custom variables, the key should be the variable and the value a function
 				substitutions = {},
 			},
-			new_notes_location = "notes_subdir",
-			note_id_func = function(title)
-				-- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
-				-- In this case a note with the title 'My new note' will be given an ID that looks
-				-- like '1657296016-my-new-note', and therefore the file name '1657296016-my-new-note.md'
-				local suffix = ""
-				if title ~= nil then
-					-- If title is given, transform it into valid file name.
-					suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
-				end
-				return tostring(os.date('%Y%m%d%H%M', os.time())) .. suffix
+			new_notes_location = "03-Resources",
+			note_id_func = function()
+				return string.format("%s", tostring(os.date('%Y%m%d%H%M', os.time())))
 			end,
 
-			-- see below for full list of options 👇
+			image_name_func = function()
+				return string.format("%s", tostring(os.date('%Y%m%d%H%M', os.time())))
+			end,
+
+			attachments = {
+				img_folder = "assets",
+				img_text_func = function(client, path)
+					path = client:vault_relative_path(path) or path
+					return string.format("![%s](%s)", path.name, path)
+				end,
+			},
+
+			mappings = {
+				-- "Obsidian follow"
+				["gf"] = {
+					action = function()
+						return require("obsidian").util.gf_passthrough()
+					end,
+					opts = { noremap = false, expr = true, buffer = true },
+					desc = 'Follow link'
+				},
+				["gfv"] = {
+					action = function()
+						return '<cmd>ObsidianFollowLink vsplit<CR>'
+					end,
+					opts = { noremap = false, expr = true, buffer = true },
+					desc = 'Follow link and Vertical split'
+				},
+				["gfh"] = {
+					action = function()
+						return '<cmd>ObsidianFollowLink hsplit<CR>'
+					end,
+					opts = { noremap = false, expr = true, buffer = true },
+					desc = 'Follow link and Horizontal split'
+				},
+				["<leader>on"] = {
+					action = function()
+						return '<cmd>ObsidianNew<CR>'
+					end,
+					opts = { noremap = false, expr = true, buffer = true },
+					desc = 'Create a new Obsidian note'
+				},
+				["<leader>ot"] = {
+					action = function()
+						return '<cmd>ObsidianTags<CR>'
+					end,
+					opts = { noremap = false, expr = true, buffer = true },
+					desc = 'Search for notes by Tag'
+				},
+				["<leader>of"] = {
+					action = function()
+						return '<cmd>ObsidianSearch<CR>'
+					end,
+					opts = { noremap = false, expr = true, buffer = true },
+					desc = 'Search for Obsidian file or create a note'
+				},
+				["<leader>orn"] = {
+					action = function()
+						return '<cmd>ObsidianRename<CR>'
+					end,
+					opts = { noremap = false, expr = true, buffer = true },
+					desc = 'Rename a Obsidian file'
+				},
+				["<leader>op"] = {
+					action = function()
+						return '<cmd>ObsidianPasteImg<CR>'
+					end,
+					opts = { noremap = false, expr = true, buffer = true },
+					desc = 'Paste an image'
+				},
+				-- Toggle check-boxes "obsidian done"
+				["<leader>od"] = {
+					action = function()
+						return require("obsidian").util.toggle_checkbox()
+					end,
+					opts = { buffer = true },
+					desc = "Toggle check box"
+				},
+			},
 		},
 	}
 }
