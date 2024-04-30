@@ -115,6 +115,7 @@
     typescript
     nodejs
     nodePackages.npm
+    nodePackages_latest.pnpm
   ];
 
   home.file.".zshrc".source = ./zsh/zshrc;
