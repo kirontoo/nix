@@ -1,6 +1,8 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/.node_modules/bin:$HOME/go/bin:$HOME/scripts:$HOME/bin:/usr/local/bin:$PATH
 
+export XDG_DATA_DIRS=~/.nix-profile/share/applications/:$XDG_DATA_DIRS 
+
 # Path to your oh-my-zsh installation.
 # export ZSH="$HOME/.oh-my-zsh"
 
@@ -35,9 +37,8 @@ SPACESHIP_CHAR_SYMBOL=❯
 #  / ___ \| | | (_| \__ \
 # /_/   \_\_|_|\__,_|___/
                        
-alias dev="cd ~/Documents/dev"
 alias repos="cd ~/Documents/repos/github.com/kirontoo"
-alias dotfiles="cd ~/Documents/repos/dotfiles"
+alias dotfiles="cd ~/Documents/dotfiles"
 alias mindmap="cd ~/Documents/mindmap"
 alias blog="cd ~/Documents/repos/github.com/kirontoo/personal-blog"
 alias config="cd ~/.config/"
@@ -218,6 +219,19 @@ fzf_git_diff() {
   git diff $@ --name-only | fzf --color=16 -m --ansi --preview $preview --preview-window=down:80%
 }
 ################################################
+
+if [ ! -S ~/.ssh/ssh_auth_sock ]; then
+  eval `ssh-agent`
+  ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+fi
+export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+ssh-add -l > /dev/null || ssh-add
+
+# start only one ssh-agent and reuse the created one
+# this is used for sway, althou keys added do not persist on reboot
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent > "$XDG_RUNTIME_DIR/ssh-agent.env"
+fi
 
 # https://github.com/gsamokovarov/jump
 # eval "$(jump shell zsh)"
