@@ -61,6 +61,8 @@
       bind-key -r l select-pane -R
       unbind-key :
       bind-key . command-prompt
+      set -g default-terminal "xterm-256color"
+      set-option -ga terminal-overrides ",xterm-256color:Tc"
     '';
   };
 }
