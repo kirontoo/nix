@@ -7,31 +7,31 @@
     historyLimit = 100000;
     plugins = with pkgs;
       [
-        {
-          plugin = tmuxPlugins.catppuccin;
-          extraConfig = '' 
-          set -g @catppuccin_flavour 'mocha'
-          set -g @catppuccin_window_tabs_enabled on
-          set -g @catppuccin_date_time "%H:%M"
-          set -g @catppuccin_window_status_enable "yes"
-
-          # Status line
-          set -g @catppuccin_window_right_separator "█ "
-          set -g @catppuccin_window_number_position "right"
-          set -g @catppuccin_window_middle_separator " | "
-
-          set -g @catppuccin_window_default_fill "none"
-
-          set -g @catppuccin_window_current_fill "all"
-
-          set -g @catppuccin_status_modules_left "directory"
-          set -g @catppuccin_status_modules_right "application session user host date_time"
-          set -g @catppuccin_status_left_separator "█"
-          set -g @catppuccin_status_right_separator "█"
-
-          set -g @catppuccin_date_time_text "%H:%M:%S"
-          '';
-        }
+        # {
+        #   plugin = tmuxPlugins.catppuccin;
+        #   extraConfig = '' 
+        #   set -g @catppuccin_flavour 'mocha'
+        #   set -g @catppuccin_window_tabs_enabled on
+        #   set -g @catppuccin_date_time "%H:%M"
+        #   set -g @catppuccin_window_status_enable "yes"
+        #
+        #   # Status line
+        #   set -g @catppuccin_window_right_separator "█ "
+        #   set -g @catppuccin_window_number_position "right"
+        #   set -g @catppuccin_window_middle_separator " | "
+        #
+        #   set -g @catppuccin_window_default_fill "none"
+        #
+        #   set -g @catppuccin_window_current_fill "all"
+        #
+        #   set -g @catppuccin_status_modules_left "directory"
+        #   set -g @catppuccin_status_modules_right "application session user host date_time"
+        #   set -g @catppuccin_status_left_separator "█"
+        #   set -g @catppuccin_status_right_separator "█"
+        #
+        #   set -g @catppuccin_date_time_text "%H:%M:%S"
+        #   '';
+        # }
         {
           plugin = tmuxPlugins.yank;
         }
@@ -63,6 +63,20 @@
       bind-key . command-prompt
       set -g default-terminal "xterm-256color"
       set-option -ga terminal-overrides ",xterm-256color:Tc"
+
+      set -g status-position bottom
+      set -g status-justify left
+      set -g status-style "fg=colour15"
+      set -g status-left ""
+      set -g status-right "#[fg=colour0,bg=colour14] %Y/%m/%d #[fg=colour0,bg=colour13] %I:%M%P "
+      set -g status-right-length 50
+      set -g status-left-length 20
+      setw -g window-status-current-style "fg=colour15 bg=colour1"
+      setw -g window-status-current-format " #I#[fg=colour15]:#[fg=colour15]#W#[fg=colour15]#F "
+      setw -g window-status-style "fg=colour15"
+      setw -g window-status-format " #I#[fg=colour15]:#[fg=colour15]#W#[fg=colour15]#F "
+      set -g pane-border-style fg="colour12"
+      set -g pane-active-border-style fg="colour12"
     '';
   };
 }
