@@ -72,6 +72,8 @@
     ripgrep
     vivaldi
     vscode
+    nnn
+    vivaldi
 
     ## cli apps
     tomato-c
