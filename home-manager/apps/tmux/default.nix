@@ -61,6 +61,11 @@
       bind-key -r l select-pane -R
       unbind-key :
       bind-key . command-prompt
+
+      # Start windows and panes at 1, not 0
+      set -g base-index 1
+      setw -g pane-base-index 1
+
       set -g default-terminal "xterm-256color"
       set-option -ga terminal-overrides ",xterm-256color:Tc"
 
